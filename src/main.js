@@ -8,15 +8,16 @@ import { DoctorInfo } from './../src/doctor-info.js';
 
 $(document).ready(function() {
   
-  $('#getDoctorName').click(function() {
+  $('form#by-name').submit(function(event) {
+    event.preventDefault();
     const name = $('#name').val();
     $('#name').val("");
-    let docInfoArray = [];
-    console.log(docInfoArray);
+    // let docInfoArray = [];
+    // console.log(docInfoArray);
     
-    for (let i=0; i<=docInfoArray.length; i++) { 
-      $("#show_by_name").append(docInfoArray[i]);
-    }
+    // for (let i=0; i<=docInfoArray.length; i++) { 
+    //   $("#show_by_name").append(docInfoArray[i]);
+    // }
     (async () => {
       let doctor = new Doctor();
       const response = await doctor.getDoctorByName(name);
@@ -39,7 +40,10 @@ $(document).ready(function() {
             acceptsNew = "It is not clear whether this doctor is accepting new patients";
           }
         });
-        docInfoArray.push('<h2 class="doc-name">' + docInfo.name + '</h2>' + '<p id="doc-bio">' + docInfo.bio + '</p>' + '<p class="practices">' + docInfo.practice + '</p>' + '<p class="address">' + docInfo.address + '</p>' + '<p class="phone">' + docInfo.phone + '</p>' + '<p class="accepting-new">' + acceptsNew + '</p>');
+        let info = '<li>' + '<h2 class="doc-name">' + docInfo.name + '</h2>' + '<p id="doc-bio">' + docInfo.bio + '</p>' + '<p class="practices">' + docInfo.practice + '</p>' + '<p class="address">' + docInfo.address + '</p>' + '<p class="phone">' + docInfo.phone + '</p>' + '<p class="accepting-new">' + acceptsNew + '</p>' + '</li>';
+        console.log(info);
+
+        $("ul.show-info").append(info);
         
       });
     }
