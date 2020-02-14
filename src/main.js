@@ -23,15 +23,21 @@ $(document).ready(function() {
       const docArray = response;
       let docNameArray = [];
       let acceptNew = [];
+      console.log(docArray);
 
-      docArray.data.practices.forEach(doctor) {
-        docNameArray.push(doctor.name);
-        acceptNew.push(doctor.accepts_new_patients)
+      docArray.data.forEach(function(doctor) {
+        docNameArray.push(doctor.profile.bio);
+        acceptNew.push(doctor.accepts_new_patients);
+        console.log(doctor.profile.bio);
+      });
+
+      for (let i=0; i<docNameArray.length; i++) {
+      $('.showBio').append("<li>" + "Doctor Name: " + docNameArray[i] + "</li>");
+      if (acceptNew[i] === true) {
+        $('.acceptingNew').append("<li>" + "This doctor is accepting new patients! " + "</li>");
+      } else {
+        $('.acceptingNew').append("<li>" + "This doctor is NOT accepting new patients! " + "</li>");
       }
-
-      for (let i=0; i<docArray.length; i++) {
-      $('.showName').append("<li>" + "Doctor Name: " + docNameArray[i] + "</li>");
-      $('.acceptingNew').append("<li>" + "Is this doctor accepting new patients: " + acceptNew[i] + "</li>");
     }
   }
 
