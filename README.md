@@ -10,6 +10,12 @@ _{This is a detailed description of your application. Its purpose and usage.  Gi
 
 |   Behavior    |   Input     |     Output    |
 |--------------:|:-----------:|--------------:|
+|User enters a mediacal issue as a string |flu 345 |"please enter query without numbers." |
+|A user should be able to enter a medical issue to receive a list of doctors in the Portland area that fit the search query |Migraine |*contact info for physician.* |
+|A user should be able to enter a name to receive a list of doctors in the Portland area that fit the search query. |Marsha Brady |*list of physicians with similar names* |
+|If the query response includes any doctors, the following information should be included about each doctor: first name, last name, address, phone number, website and whether or not the doctor is accepting new patients (the API provides this data). |Marsha Brady |Marsha, Brady, 123 Alphabet St, 502-123-4567, www.abc.com, accepting new patients. |
+|If the API call results in an error (any message not a 200 OK), the application should return a notification that states what the error is. |*API call with bad link* |Error: connection refused. |
+|If the query response doesn't include any doctors (for instance, if no doctors meet the search criteria), the application should return a notification that states that no doctors meet the criteria. (This is not an error so it should be handled separately from any errors.) |Search: Marsha Brady |"There are no doctors by that name in your area." |
 
 
 
