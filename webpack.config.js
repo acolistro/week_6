@@ -19,7 +19,7 @@ module.exports = {
     new UglifyJsPlugin({ sourceMap: true }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Giphy API',
+      title: 'Week 6',
       template: './src/index.html',
       inject: 'body'
     })
