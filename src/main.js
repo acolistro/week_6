@@ -15,14 +15,25 @@ $(document).ready(function() {
 
     (async () => {
       let doctor = new Doctor();
-      const response = await doctor.getDoctorrByName(name);
+      const response = await doctor.getDoctorByName(name);
       getElements(response);
     })();
 
-    function getElements(response) {
-      $('.showAddress').text(`Location:`);
-      $('.acceptingNew').text(`Is this doctor accepting new patients:`);
+    async function getElements(response) {
+      const docArray = response;
+      let docNameArray = [];
+      let acceptNew = [];
+
+      docArray.data.practices.forEach(doctor) {
+        docNameArray.push(doctor.name);
+        acceptNew.push(doctor.accepts_new_patients)
+      }
+
+      for (let i=0; i<docArray.length; i++) {
+      $('.showName').append("<li>" + "Doctor Name: " + docNameArray[i] + "</li>");
+      $('.acceptingNew').append("<li>" + "Is this doctor accepting new patients: " + acceptNew[i] + "</li>");
     }
+  }
 
   });
 });
