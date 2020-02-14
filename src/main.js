@@ -7,11 +7,16 @@ import { Doctor } from './../src/doctor.js';
 import { DoctorInfo } from './../src/doctor-info.js';
 
 $(document).ready(function() {
-
+  
   $('#getDoctorName').click(function() {
     const name = $('#name').val();
     $('#name').val("");
+    let docInfoArray = [];
+    console.log(docInfoArray);
     
+    for (let i=0; i<=docInfoArray.length; i++) { 
+      $("#show_by_name").append(docInfoArray[i]);
+    }
     (async () => {
       let doctor = new Doctor();
       const response = await doctor.getDoctorByName(name);
@@ -21,35 +26,22 @@ $(document).ready(function() {
         $(".errors").append(doctor.errorMessage);
       }
     })();
-
+    
+    
     async function getElements(response) {      
       response.data.forEach(function(doctor) {
         let docInfo = new DoctorInfo(doctor);
-        docInfo.acceptingNew();
-        $(".show_by_name").append(
-          '<div class="panel panel-default">' + 
-            '<div class="panel-heading">' +
-              '<h2 class="panel-title">' + docInfo.name + '</h2>' + '</div>' + 
-              '<div class="panel-body">' + '<h2 id="doc-bio">' + docInfo.bio + '</h2>'
-        );
-       
-
+        let acceptsNew;
+        docInfo.doctor.practices.forEach(function(practice) {
+          if (practice.accepts_new_patients === true) {
+            acceptsNew = "This doctor is accepting new patients!";
+          } else if (practice.accepts_new_patients === undefined) {
+            acceptsNew = "It is not clear whether this doctor is accepting new patients";
+          }
+        });
+        docInfoArray.push('<h2 class="doc-name">' + docInfo.name + '</h2>' + '<p id="doc-bio">' + docInfo.bio + '</p>' + '<p class="practices">' + docInfo.practice + '</p>' + '<p class="address">' + docInfo.address + '</p>' + '<p class="phone">' + docInfo.phone + '</p>' + '<p class="accepting-new">' + acceptsNew + '</p>');
+        
       });
-      
-
-  //     for (let i=0; i<docArray.length; i++) {
-  //       docNameArray[i].toUpperCase();
-  //       $('.panel-title').append(docNameArray[i]);
-  //       $('.showBio').append("<li>" + "Doctor Name: " + docNameArray[i] + "</li>");
-  //     if (newPatients === true) {
-  //       $('.acceptingNew').append("<li>" + "This doctor is accepting new patients! " + "</li>");
-  //     } else {
-  //       $('.acceptingNew').append("<li>" + "This doctor is NOT accepting new patients! " + "</li>");
-  //     }
-  //   }
-  // }
-
-
-  }
+    }
+  })
 })
-});

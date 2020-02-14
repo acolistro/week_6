@@ -8,12 +8,4 @@ export class DoctorInfo {
     this.phone = doctor.practices[0].phones[0].number;
     // this.website = website;
   }
-
-  acceptingNew() {
-    if (this.doctor.practices[0].accepts_new_patients) {
-      this.acceptsNew = "This doctor is accepting new patients!";
-    } else {
-      this.acceptsNew = "This doctor is NOT accepting new patients";
-    }
-  }
 }
