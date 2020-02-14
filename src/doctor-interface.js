@@ -3,15 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import $ from 'jquery';
 
-import { Doctor } from './../src/doctor.js';
+import { Doctor } from './doctor.js';
 
 $(document).ready(function() {
 
   $('#getDoctor').click(function() {
     const name = $('#name').val();
     $('#name').val("");
-    console.log(name);
-    
 
     (async () => {
       let doctor = new Doctor();
