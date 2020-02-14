@@ -22,18 +22,25 @@ $(document).ready(function() {
     async function getElements(response) {
       const docArray = response;
       let docNameArray = [];
-      let acceptNew = [];
-      console.log(docArray);
-
+      
       docArray.data.forEach(function(doctor) {
-        docNameArray.push(doctor.profile.bio);
-        acceptNew.push(doctor.accepts_new_patients);
+        let newPatients = [];
+        console.log(newPatients);
+        docNameArray.push(doctor.profile.first_name + " " + doctor.profile.last_name);
+        acceptNew.push(doctor.practices);
         console.log(doctor.profile.bio);
+        doctor.practices.forEach(function(practice) {
+          newPatients.push(practice.accepts_new_patients);
+          console.log(docArray.data.practices);
+        });
       });
+      
 
       for (let i=0; i<docNameArray.length; i++) {
-      $('.showBio').append("<li>" + "Doctor Name: " + docNameArray[i] + "</li>");
-      if (acceptNew[i] === true) {
+        docNameArray[i].toUpperCase();
+        $('.panel-title').append(docNameArray[i]);
+        $('.showBio').append("<li>" + "Doctor Name: " + docNameArray[i] + "</li>");
+      if (newPatients === true) {
         $('.acceptingNew').append("<li>" + "This doctor is accepting new patients! " + "</li>");
       } else {
         $('.acceptingNew').append("<li>" + "This doctor is NOT accepting new patients! " + "</li>");
