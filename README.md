@@ -1,16 +1,16 @@
-# _{Application Name}_
+# _Doctor Info_
 
-#### _{Brief description of application}, {Date of current version}_
+#### _A simple app that allows a user to find a nearby doctor by name or by symptom, current version: 2020 _
 
-#### By _**{List of contributors}**_
+#### By _**Alyssa**_
 
 ## Description
 
-_{This is a detailed description of your application. Its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+_This app uses the Better Doctor API to allow a user to search doctors and practices nearby that either match a name query or a symptom query based on the location of the user. It displays the first 10 results that match the query._
 
 |   Behavior    |   Input     |     Output    |
 |--------------:|:-----------:|--------------:|
-|User enters a mediacal issue as a string |flu 345 |"please enter query without numbers." |
+|User enters a medical issue as a string |flu 345 |"please enter query without numbers." |
 |A user should be able to enter a medical issue to receive a list of doctors in the Portland area that fit the search query |Migraine |*contact info for physician.* |
 |A user should be able to enter a name to receive a list of doctors in the Portland area that fit the search query. |Marsha Brady |*list of physicians with similar names* |
 |If the query response includes any doctors, the following information should be included about each doctor: first name, last name, address, phone number, website and whether or not the doctor is accepting new patients (the API provides this data). |Marsha Brady |Marsha, Brady, 123 Alphabet St, 502-123-4567, www.abc.com, accepting new patients. |
@@ -24,28 +24,47 @@ _{This is a detailed description of your application. Its purpose and usage.  Gi
 
 ## Setup/Installation Requirements
 
-* _This is a great place_
-* _to list setup instructions_
-* _in a simple_
-* _easy-to-understand_
-* _format_
+* _Access my repository for this project on GitHub here: https://github.com/acolistro/week_5.git_
+* _Ensure you have node and npm properly installed on your machine_
+* _Once you have the repository cloned, run npm init -y in the repository from your command line_
+* _Delete the package-lock.json file from the repository._
+* _Once that is done, run npm install_
+* _Once that is done, run npm run build_
+* _You will need your own user key for the better doctor API, which you can get by following the instructions here: https://developer.betterdoctor.com/_
+* _If you build a front end/UI, you can use the npm start command to view the app on a local server._
 
-_{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?}_
 
 ## Known Bugs
 
-_{Are there issues that have not yet been resolved that you want to let users know you know?  Outline any issues that would impact use of your application.  Share any workarounds that are in place. }_
+_This app has a few bugs as is. It will not access the API unless it is hard coded in the doctor.js file, and it won't access the API for the symptom search yet._
 
 ## Support and contact details
 
-_{Let people know what to do if they run into any issues or have questions, ideas or concerns.  Encourage them to contact you or make a contribution to the code.}_
-
+_If you find another bug or find a solution to the existing bugs I highly encourage you to contact me at arcolistro@gmail.com and/or submit a pull request to this repository. Please note that this application is not built to be compatible with web-accessibility tools or be viewed on any browser other than the current version of the Chrome browser._
 ## Technologies Used
 
-_{Tell me about the languages and tools you used to create this app. Assume that I know you probably used HTML and CSS. If you did something really cool using only HTML, point that out.}_
+_This app was built using JavaScript, Node.js, npm, HTML as well as the following dependencies:_
+
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "dotenv-webpack": "^1.7.0",
+    "eslint": "^6.3.0",
+    "eslint-loader": "^3.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.9.0",
+    "style-loader": "^1.0.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "4.39.3",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0"
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.1"
 
 ### License
 
-*{Determine the license under which this application can be used.  See below for more details on licensing.}*
+*There are no licensed materials used in this app in its current state.*
 
-Copyright (c) 2016 **_{List of contributors or company name}_**
+Copyright (c) 2020 **_MallSoft95 LLC_**
