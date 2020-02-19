@@ -17,11 +17,9 @@ $(document).ready(function() {
     (async () => {
       let doctor = new Doctor();
       const response = await doctor.getDoctor(query);
-      console.log(response);
       getElements(response);
       if (doctor.error) {
         $("p.error").append(response);
-        console.log(doctor.error);
       }
       if (response.data.length === 0) {
         $("p.error").append("There was an error handling your request: either no doctors match your query or you did not enter a valid name or symptom. Please try again!");
@@ -47,7 +45,6 @@ $(document).ready(function() {
           }
         });
         let info = '<li>' + '<h2 class="doc-name">' + docInfo.name + '</h2>' + '<p id="doc-bio">' + docInfo.bio + '</p>' + '<p class="practices">' + docInfo.practice + '</p>' + '<p class="address">' + docInfo.address + '</p>' + '<p class="phone">' + docInfo.phone + '</p>' + '<p class="accepting-new">' + acceptsNew + '</p>' + '<p class="website">' + website + '</p>' + '</li>';
-        console.log(info);
 
         $("ul.show-info").append(info);
         

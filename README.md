@@ -2,7 +2,7 @@
 
 #### _A simple app that allows a user to find a nearby doctor by name or by symptom, current version: 2020 _
 
-#### By _**Alyssa**_
+#### By _**Alyssa Colistro**_
 
 ## Description
 
@@ -36,14 +36,14 @@ _This app uses the Better Doctor API to allow a user to search doctors and pract
 
 ## Known Bugs
 
-_This app has a few bugs as is. It will not access the API unless it is hard coded in the doctor.js file, and it won't access the API for the symptom search yet._
+_There are no known bugs at this time._
 
 ## Support and contact details
 
-_If you find another bug or find a solution to the existing bugs I highly encourage you to contact me at arcolistro@gmail.com and/or submit a pull request to this repository. Please note that this application is not built to be compatible with web-accessibility tools or be viewed on any browser other than the current version of the Chrome browser._
+_If you find a bug I highly encourage you to contact me at arcolistro@gmail.com and/or submit a pull request to this repository. Please note that this application is not built to be compatible with web-accessibility tools or be viewed on any browser other than the current version of the Chrome browser._
 ## Technologies Used
 
-_This app was built using JavaScript, Node.js, npm, HTML as well as the following dependencies:_
+_This app was built using JavaScript, Node.js, npm, HTML, and the BetterDoctorAPI as well as the following dependencies:_
 
     "@babel/core": "^7.6.4",
     "@babel/plugin-transform-modules-commonjs": "^7.6.0",
