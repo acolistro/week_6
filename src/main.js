@@ -5,22 +5,26 @@ import $ from 'jquery';
 
 import { Doctor } from './../src/doctor.js';
 import { DoctorInfo } from './../src/doctor-info.js';
-import { SymptomInfo } from './../src/symptom-info.js';
+
 
 $(document).ready(function() {
   
-  $('form#by-name').submit(function(event) {
+  $('form#by-query').submit(function(event) {
     event.preventDefault();
-    const name = $('#name').val();
-    $('#name').val("");
+    const query = $('#query').val();
+    $('#query').val("");
 
     (async () => {
       let doctor = new Doctor();
-      const response = await doctor.getDoctorByName(name);
+      const response = await doctor.getDoctor(query);
       console.log(response);
       getElements(response);
-      if (doctor.errorMessage) {
-        $(".errors").append(doctor.errorMessage);
+      if (doctor.error) {
+        $("p.error").append(response);
+        console.log(doctor.error);
+      }
+      if (response.data.length === 0) {
+        $("p.error").append("There was an error handling your request: either no doctors match your query or you did not enter a valid name or symptom. Please try again!");
       }
     })();
     
@@ -29,55 +33,25 @@ $(document).ready(function() {
       response.data.forEach(function(doctor) {
         let docInfo = new DoctorInfo(doctor);
         let acceptsNew;
+        let website;
         docInfo.doctor.practices.forEach(function(practice) {
           if (practice.accepts_new_patients === true) {
             acceptsNew = "This doctor is accepting new patients!";
-          } else if (practice.accepts_new_patients === undefined) {
-            acceptsNew = "It is not clear whether this doctor is accepting new patients";
+          } else {
+            acceptsNew = "Please contact doctor directly to find out whether they is accepting new patients";
+          }
+          if (practice.website) {
+            website = '<a href="' + practice.website + '">Practice Website</a>';
+          } else {
+            website = "This doctor does not have a website listed.";
           }
         });
-        let info = '<li>' + '<h2 class="doc-name">' + docInfo.name + '</h2>' + '<p id="doc-bio">' + docInfo.bio + '</p>' + '<p class="practices">' + docInfo.practice + '</p>' + '<p class="address">' + docInfo.address + '</p>' + '<p class="phone">' + docInfo.phone + '</p>' + '<p class="accepting-new">' + acceptsNew + '</p>' + '</li>';
+        let info = '<li>' + '<h2 class="doc-name">' + docInfo.name + '</h2>' + '<p id="doc-bio">' + docInfo.bio + '</p>' + '<p class="practices">' + docInfo.practice + '</p>' + '<p class="address">' + docInfo.address + '</p>' + '<p class="phone">' + docInfo.phone + '</p>' + '<p class="accepting-new">' + acceptsNew + '</p>' + '<p class="website">' + website + '</p>' + '</li>';
         console.log(info);
 
         $("ul.show-info").append(info);
         
       });
     }
-
-    $('form#by-symptom').submit(function(event) {
-      event.preventDefault();
-      const symptom = $('#symptom').val();
-      $('#symptom').val("");
-  
-      (async () => {
-        let doctor = new Doctor();
-        const response = await doctor.getDoctorBySymptom(symptom);
-        console.log(response);
-        getElements(response);
-        if (doctor.errorMessage) {
-          $(".errors").append(doctor.errorMessage);
-        }
-      })();
-      
-      
-      async function getElements(response) {      
-        response.data.forEach(function(symptom) {
-          let pracInfo = new SymptomInfo(symptom);
-          let acceptsNew;
-          pracInfo.symptom.practices.forEach(function(practice) {
-            if (practice.accepts_new_patients === true) {
-              acceptsNew = "This practice is accepting new patients!";
-            } else if (practice.accepts_new_patients === undefined) {
-              acceptsNew = "It is not clear whether this practice is accepting new patients";
-            }
-          });
-          let info = '<li>' + '<h2 class="prac-name">' + pracInfo.practice + '</h2>' + '<p id="doc-desc">' + pracInfo.description + '</p>' + '<p class="email">' + pracInfo.email + '</p>' + '<p class="website">' + pracInfo.website + '<p class="accepting-new">' + acceptsNew + '</p>' + '</li>';
-          console.log(info);
-  
-          $("ul.show-info").append(info);
-          
-        });
-      }
-    })
-  })
-})
+  });
+});

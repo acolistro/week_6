@@ -11,17 +11,13 @@
       <div class="jumbotron">
         <h1>Get Info for Doctors in your Area!</h1>
       </div>
-      <form action="submit" id="by-name">
-        <label for="name">Enter a name:</label>
-        <input id="name" type="text">
+      <form action="submit" id="by-query">
+        <label for="query">Enter a Name or Symptom:</label>
+        <input id="query" type="text">
         <button class="submit" id="getDoctorName">GO</button>
       </form>
-      <form action="submit" id="by-symptom">
-        <label for="symptom">Enter a symptom:</label>
-        <input id="symptom" type="text">
-        <button class="submit" id="getSymptom">GO</button>
-      </form>
       <div class="errors"></div>
+        <p class="error"></p>
       <div id="show-by-name">
         <ul class="show-info"></ul>
       </div>  

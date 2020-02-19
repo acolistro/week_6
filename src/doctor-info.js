@@ -6,6 +6,5 @@ export class DoctorInfo {
     this.practice = "Practices:" + doctor.practices[0].name;
     this.address = "Address: " + doctor.practices[0].visit_address.street + ", " + doctor.practices[0].visit_address.city + ", " + doctor.practices[0].visit_address.state;
     this.phone = "Phone: " + doctor.practices[0].phones[0].number;
-    // this.website = website;
   }
 }
