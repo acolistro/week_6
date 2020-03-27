@@ -24,7 +24,7 @@ _This app uses the Better Doctor API to allow a user to search doctors and pract
 
 ## Setup/Installation Requirements
 
-* _Access my repository for this project on GitHub here: https://github.com/acolistro/week_5.git_
+* _Access my repository for this project on GitHub here: https://github.com/acolistro/week_6.git_
 * _Ensure you have node and npm properly installed on your machine_
 * _Once you have the repository cloned, run npm init -y in the repository from your command line_
 * _Delete the package-lock.json file from the repository._
